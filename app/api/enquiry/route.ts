@@ -1,35 +1,73 @@
 import { NextResponse } from "next/server";
+import { serviceOptions, budgetOptions } from "@/lib/data";
+import { isValidEmail, isValidPhone, sanitizeText } from "@/lib/utils";
 
-export async function GET() {
-  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+const WEBHOOK_TIMEOUT_MS = 30_000;
 
-  return NextResponse.json({
-    api: "working",
-    webhookConfigured: Boolean(webhookUrl),
-    webhookHost: webhookUrl
-      ? new URL(webhookUrl).hostname
-      : null,
-  });
+type EnquiryPayload = {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  service: string;
+  budget: string;
+  description: string;
+};
+
+function validate(
+  body: Record<string, unknown>
+): { data?: EnquiryPayload; error?: string } {
+  const name = sanitizeText(body.name, 120);
+  const email = sanitizeText(body.email, 200);
+  const phone = sanitizeText(body.phone, 30);
+  const company = sanitizeText(body.company, 160);
+  const service = sanitizeText(body.service, 120);
+  const budget = sanitizeText(body.budget, 60);
+
+  const description = sanitizeText(
+    body.description ?? body.details,
+    3000
+  );
+
+  if (!name) {
+    return { error: "Name is required." };
+  }
+
+  if (!email || !isValidEmail(email)) {
+    return { error: "A valid email is required." };
+  }
+
+  if (!phone || !isValidPhone(phone)) {
+    return { error: "A valid phone number is required." };
+  }
+
+  if (!service || !serviceOptions.includes(service)) {
+    return { error: "Please select a service." };
+  }
+
+  if (!budget || !budgetOptions.includes(budget)) {
+    return { error: "Please select a budget range." };
+  }
+
+  if (!description) {
+    return { error: "Please describe your project." };
+  }
+
+  return {
+    data: {
+      name,
+      email,
+      phone,
+      company,
+      service,
+      budget,
+      description,
+    },
+  };
 }
 
 export async function POST(request: Request) {
-  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-
-  console.log("[enquiry] API called");
-  console.log("[enquiry] Webhook configured:", Boolean(webhookUrl));
-
-  if (!webhookUrl) {
-    return NextResponse.json(
-      {
-        ok: false,
-        step: "environment-variable",
-        error: "GOOGLE_SHEETS_WEBHOOK_URL is missing",
-      },
-      { status: 503 }
-    );
-  }
-
-  let body: unknown;
+  let body: Record<string, unknown>;
 
   try {
     body = await request.json();
@@ -37,47 +75,133 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        step: "request-json",
-        error: "Invalid JSON request",
+        error: "Invalid request.",
       },
       { status: 400 }
     );
   }
 
-  console.log("[enquiry] Request received");
+  const { data, error } = validate(body);
+
+  if (!data) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error,
+      },
+      { status: 400 }
+    );
+  }
+
+  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+
+  if (!webhookUrl) {
+    console.error(
+      "[enquiry] GOOGLE_SHEETS_WEBHOOK_URL is not configured."
+    );
+
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Enquiry service is not configured. Please try again later.",
+      },
+      { status: 503 }
+    );
+  }
+
+  const controller = new AbortController();
+
+  const timeout = setTimeout(() => {
+    controller.abort();
+  }, WEBHOOK_TIMEOUT_MS);
 
   try {
+    console.log("[enquiry] Sending enquiry to Google Apps Script...");
+
     const response = await fetch(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(data),
+      signal: controller.signal,
       redirect: "follow",
       cache: "no-store",
     });
 
-    const text = await response.text();
+    const responseText = await response.text();
 
-    console.log("[enquiry] Apps Script status:", response.status);
-    console.log("[enquiry] Apps Script response:", text);
+    console.log(
+      "[enquiry] Apps Script response:",
+      response.status,
+      responseText
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Google Apps Script returned HTTP ${response.status}`
+      );
+    }
+
+    let result: {
+      success?: boolean;
+      message?: string;
+      savedToSheet?: boolean;
+      emailSent?: boolean;
+      error?: string;
+    };
+
+    try {
+      result = JSON.parse(responseText);
+    } catch {
+      throw new Error(
+        "Google Apps Script returned an invalid response."
+      );
+    }
+
+    if (result.success !== true) {
+      throw new Error(
+        result.error ||
+          result.message ||
+          "Google Apps Script reported failure."
+      );
+    }
+
+    if (result.savedToSheet !== true) {
+      throw new Error(
+        "Google Apps Script did not confirm that the enquiry was saved."
+      );
+    }
+
+    console.log(
+      "[enquiry] Enquiry successfully saved to Google Sheet."
+    );
 
     return NextResponse.json({
-      ok: response.ok,
-      step: "google-apps-script",
-      status: response.status,
-      response: text,
+      ok: true,
+      message: "Enquiry submitted successfully.",
     });
-  } catch (error) {
-    console.error("[enquiry] Fetch failed:", error);
+  } catch (err) {
+    const isAbort =
+      err instanceof Error && err.name === "AbortError";
+
+    console.error(
+      `[enquiry] Google Sheets request failed${
+        isAbort ? " (timeout)" : ""
+      }:`,
+      err instanceof Error ? err.message : err
+    );
 
     return NextResponse.json(
       {
         ok: false,
-        step: "google-apps-script-request",
-        error: error instanceof Error ? error.message : String(error),
+        error:
+          "Something went wrong while sending your enquiry. Please try again or contact us directly.",
       },
       { status: 502 }
     );
+  } finally {
+    clearTimeout(timeout);
   }
 }
