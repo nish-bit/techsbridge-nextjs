@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "college website development",
     "startup MVP development",
     "dashboard development",
-    "Nishant Ali",
+    "website maintenace services",
   ],
   authors: [{ name: company.founder }],
   openGraph: {

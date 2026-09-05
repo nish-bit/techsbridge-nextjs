@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { company } from "@/lib/data";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${company.domain}/sitemap.xml`,
+    sitemap: "https://techsbridge.in/sitemap.xml",
   };
 }

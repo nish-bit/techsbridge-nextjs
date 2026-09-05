@@ -1,13 +1,24 @@
 import type { MetadataRoute } from "next";
-import { company } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: company.domain,
+      url: "https://techsbridge.in/",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: "https://techsbridge.in/services",
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 1,
+      priority: 0.8,
+    },
+    {
+      url: "https://techsbridge.in/contact",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
   ];
 }
