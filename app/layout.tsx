@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { company } from "@/lib/data";
 import { Navbar } from "@/components/layout/Navbar";
@@ -114,6 +115,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppButton />
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );
