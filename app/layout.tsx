@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { ChatWidget } from "@/components/layout/ChatWidget";
+import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = company.domain;
 
@@ -114,6 +115,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppButton />
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );
