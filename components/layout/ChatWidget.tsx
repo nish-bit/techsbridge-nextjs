@@ -66,9 +66,11 @@ export function ChatWidget() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Open chat assistant"
-        className="fixed bottom-[76px] right-4 z-40 flex h-12 w-12 sm:bottom-[80px] sm:right-5 items-center justify-center rounded-full bg-gradient-to-br from-[var(--blue-1)] to-[var(--blue-2)] text-white shadow-[0_14px_30px_-10px_var(--glow)] transition-transform hover:scale-105"
+        aria-expanded={open}
+        className="fixed bottom-[76px] right-4 z-40 inline-flex min-h-12 items-center justify-center gap-2 border border-[var(--blue-1)] bg-[var(--blue-1)] px-3 text-sm font-semibold text-white shadow-none transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blue-1)] sm:bottom-[80px] sm:right-5"
       >
-        {open ? <X size={22} /> : <MessageSquare size={22} />}
+        {open ? <X size={21} aria-hidden="true" /> : <MessageSquare size={21} aria-hidden="true" />}
+        <span>Chat</span>
       </button>
 
       {open && (
