@@ -23,7 +23,7 @@ export function Testimonials() {
     <section id="testimonials" className="py-[118px]">
       <Container>
         <SectionHeading eyebrow="Testimonials" title="What clients say" />
-        <div className="mx-auto flex max-w-2xl items-center gap-4">
+        <div className="mx-auto flex max-w-2xl items-center gap-2 sm:gap-4">
           <button
             onClick={() => go(-1)}
             aria-label="Previous testimonial"
@@ -32,7 +32,7 @@ export function Testimonials() {
             <ChevronLeft size={18} />
           </button>
 
-          <div className="glass-card relative min-h-[220px] flex-1 overflow-hidden px-8 py-10 text-center">
+          <div className="glass-card relative min-h-[220px] flex-1 overflow-hidden px-4 py-8 text-center sm:px-8 sm:py-10">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={index}

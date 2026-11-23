@@ -63,7 +63,7 @@ export function ChatWidget() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Open chat assistant"
-        className="fixed bottom-24 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[var(--blue-1)] to-[var(--blue-2)] text-white shadow-[0_14px_30px_-10px_var(--glow)] transition-transform hover:scale-105"
+        className="fixed bottom-[76px] right-4 z-40 flex h-12 w-12 sm:bottom-[80px] sm:right-5 items-center justify-center rounded-full bg-gradient-to-br from-[var(--blue-1)] to-[var(--blue-2)] text-white shadow-[0_14px_30px_-10px_var(--glow)] transition-transform hover:scale-105"
       >
         {open ? <X size={22} /> : <MessageSquare size={22} />}
       </button>
@@ -72,7 +72,7 @@ export function ChatWidget() {
         <div
           role="dialog"
           aria-label="TechsBridge chat assistant"
-          className="fixed bottom-[104px] right-6 z-40 flex max-h-[70vh] w-[min(360px,calc(100vw-3rem))] flex-col overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg-soft)] shadow-2xl"
+          className="fixed bottom-[136px] right-4 z-40 sm:right-5 flex max-h-[min(65vh,560px)] w-[min(360px,calc(100vw-3rem))] flex-col overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg-soft)] shadow-2xl"
         >
           <div className="border-b border-[var(--border)] px-5 py-4">
             <p className="font-heading text-sm font-semibold text-[var(--text-1)]">

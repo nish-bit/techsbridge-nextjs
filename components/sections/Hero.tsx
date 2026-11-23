@@ -15,11 +15,9 @@ const trustIndicators = [
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pb-24 pt-[172px]">
-      <div className="pointer-events-none absolute -right-40 -top-64 h-[760px] w-[760px] rounded-full bg-[radial-gradient(circle,var(--glow),transparent_65%)] opacity-55 blur-[10px]" />
-      <div className="pointer-events-none absolute -bottom-56 -left-56 h-[560px] w-[560px] rounded-full bg-[var(--surface)]" />
+    <section id="home" className="relative overflow-hidden pb-16 pt-[136px] sm:pb-20 sm:pt-[148px]">
 
-      <Container className="relative z-10 grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <Container className="relative z-10 grid items-center gap-9 lg:gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,7 +27,7 @@ export function Hero() {
             <span className="h-[7px] w-[7px] rounded-full bg-[var(--blue-2)] shadow-[0_0_10px_var(--glow)]" />
             Digital Products Built For Growth
           </div>
-          <h1 className="font-heading text-[clamp(2.5rem,4.6vw+0.8rem,4.3rem)] font-bold leading-[1.07] text-[var(--text-1)]">
+          <h1 className="font-heading text-[clamp(2.35rem,3.6vw+0.75rem,3.75rem)] font-bold leading-[1.12] text-[var(--text-1)]">
             We Build Digital Products <span className="grad-text">That Grow Businesses.</span>
           </h1>
           <p className="mt-6 max-w-[520px] text-[1.12rem] text-[var(--text-2)]">
@@ -77,7 +75,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative min-h-[300px] overflow-hidden border border-[var(--border)] sm:min-h-[440px] lg:min-h-[520px]"
+          className="relative min-h-[260px] overflow-hidden border border-[var(--border)] sm:min-h-[380px] lg:min-h-[460px]"
         >
           <Image
             src="/images/hero-workspace.webp"

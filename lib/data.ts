@@ -168,7 +168,7 @@ export const projects: Project[] = [
       "A full college website with an admissions flow, live notices, and a faculty directory built for daily use.",
     tags: ["Next.js", "FastAPI", "MySQL"],
     features: ["Admissions", "Courses", "Faculty", "Gallery", "Notice Board"],
-    accent: "#2b6cff",
+    accent: "#965238",
     caseStudy: {
       role: "Illustrative project — College website client",
       problem:
@@ -192,7 +192,7 @@ export const projects: Project[] = [
       "A modern SaaS landing page with authentication, a live dashboard preview, and payments baked in.",
     tags: ["React", "Stripe", "Node.js"],
     features: ["Authentication", "Dashboard", "Payments", "Responsive"],
-    accent: "#38bdf8",
+    accent: "#b97855",
     caseStudy: {
       role: "Illustrative project — Early-stage startup client",
       problem:
@@ -216,7 +216,7 @@ export const projects: Project[] = [
       "A day-to-day operations system covering students, attendance, fees, and results in one place.",
     tags: ["FastAPI", "PostgreSQL", "Bootstrap"],
     features: ["Student Management", "Attendance", "Fees", "Results"],
-    accent: "#2b6cff",
+    accent: "#965238",
   },
   {
     id: "case4",
@@ -226,7 +226,7 @@ export const projects: Project[] = [
       "A clean, conversion-focused company profile site with lead forms and local SEO built in.",
     tags: ["React", "Tailwind", "SEO"],
     features: ["Company Profile", "Contact Forms", "SEO"],
-    accent: "#38bdf8",
+    accent: "#b97855",
   },
 ];
 

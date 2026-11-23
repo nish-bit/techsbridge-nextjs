@@ -5,7 +5,7 @@ type Variant = "primary" | "outline";
 type Size = "md" | "sm";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ease-out";
+  "inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold whitespace-nowrap transition-colors duration-150";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -15,8 +15,8 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-7 py-3.5 text-sm",
-  sm: "px-4.5 py-2.5 text-[13px]",
+  md: "min-h-11 px-7 py-3 text-sm",
+  sm: "min-h-11 px-4.5 py-2.5 text-[13px]",
 };
 
 type CommonProps = {
