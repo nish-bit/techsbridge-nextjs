@@ -1,6 +1,7 @@
 "use client";
 
 import type { Project } from "@/lib/data";
+import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
 
@@ -13,22 +14,19 @@ export function ProjectCard({
   index: number;
   onOpenCaseStudy: (project: Project) => void;
 }) {
+  const visuals = [
+    "/images/product-dashboard-light.webp",
+    "/images/product-commerce.webp",
+    "/images/product-task-app.webp",
+    "/images/product-responsive-dashboard.webp",
+    "/images/product-dashboard-dark.webp",
+  ];
   return (
     <Reveal delay={(index % 2) * 0.1}>
       <div className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-[var(--border)] bg-[var(--surface-3)] backdrop-blur transition-all duration-300 hover:-translate-y-1">
-        <div
-          className="relative flex h-40 items-end overflow-hidden p-5"
-          style={{
-            background: "var(--surface-2)",
-          }}
-        >
-          <div
-            className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
-            style={{ background: "var(--border)" }}
-          />
-          <span className="relative font-heading text-sm font-semibold text-[var(--text-1)]">
-            {project.category}
-          </span>
+        <div className="relative h-52 overflow-hidden border-b border-[var(--border)] bg-[var(--surface-2)]">
+          <Image src={visuals[index % visuals.length]} alt={`Illustrative interface concept for ${project.category}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
+          <span className="absolute bottom-3 left-3 bg-[var(--surface)] px-3 py-1 text-xs font-semibold text-[var(--text-1)]">{project.category}</span>
         </div>
         <div className="flex flex-1 flex-col p-6">
           <div className="mb-3 flex flex-wrap gap-2">

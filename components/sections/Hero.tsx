@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Zap, Cpu, Smartphone, Search } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -73,58 +74,19 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.2, 0.8, 0.2, 1] }}
-          className="relative hidden h-[480px] md:block"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="relative min-h-[300px] overflow-hidden border border-[var(--border)] sm:min-h-[440px] lg:min-h-[520px]"
         >
-          <div className="glass-card float-1 absolute left-2.5 top-5 w-[390px] overflow-hidden shadow-2xl">
-            <div className="flex gap-1.5 border-b border-[var(--border)] px-3.5 py-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-[var(--text-3)]/40" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[var(--text-3)]/40" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[var(--text-3)]/40" />
-            </div>
-            <div className="space-y-2.5 p-5">
-              <div className="h-2.5 w-2/5 rounded bg-gradient-to-r from-[var(--surface-2)] to-[var(--surface-3)]" />
-              <div className="h-2.5 w-4/5 rounded bg-gradient-to-r from-[var(--surface-2)] to-[var(--surface-3)]" />
-              <div className="h-2.5 w-3/5 rounded bg-gradient-to-r from-[var(--surface-2)] to-[var(--surface-3)]" />
-              <div className="mt-4 flex gap-2">
-                <div className="h-13 flex-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)]" />
-                <div className="h-13 flex-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)]" />
-                <div className="h-13 flex-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)]" />
-              </div>
-            </div>
-          </div>
-
-          <div className="glass-card float-2 absolute right-0 top-0 w-[230px] p-4.5 font-mono text-[11.5px] leading-loose text-[var(--text-2)] shadow-2xl">
-            <div>
-              <span className="text-[var(--blue-2)]">const</span> app = <span className="text-[var(--blue-2)]">new</span> App();
-            </div>
-            <div>
-              app.<span className="text-[var(--blue-2)]">deploy</span>(<span className="text-[var(--text-2)]">&apos;prod&apos;</span>);
-            </div>
-            <div className="text-[var(--text-3)]">{"// AI agent online ✓"}</div>
-            <div>
-              <span className="text-[var(--blue-2)]">export</span> default app;
-            </div>
-          </div>
-
-          <div className="glass-card float-3 absolute bottom-3.5 right-9 flex w-[210px] items-center gap-3 p-4.5 shadow-2xl">
-            <div className="flex h-9.5 w-9.5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[var(--blue-1)] to-[var(--blue-2)]">
-              <Cpu size={18} className="text-white" />
-            </div>
-            <div>
-              <strong className="block text-[13px] text-[var(--text-1)]">AI Agent</strong>
-              <span className="text-[11px] text-[var(--text-3)]">Responding live</span>
-            </div>
-          </div>
-
-          <div className="glass-card float-2 absolute bottom-0 left-6.5 w-[150px] p-4 shadow-2xl [animation-direction:reverse]">
-            <strong className="font-heading text-2xl grad-text">3+ yrs</strong>
-            <span className="mt-1 block text-[11px] uppercase tracking-wider text-[var(--text-3)]">
-              Learning &amp; Building
-            </span>
-          </div>
+          <Image
+            src="/images/hero-workspace.webp"
+            alt="Contemporary software development workspace"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 48vw"
+            className="object-cover"
+          />
         </motion.div>
       </Container>
     </section>

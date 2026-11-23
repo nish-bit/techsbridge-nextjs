@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
@@ -32,6 +33,9 @@ export function About() {
         </Reveal>
 
         <Reveal delay={0.15}>
+          <div className="relative mb-4 aspect-[4/3] overflow-hidden border border-[var(--border)]">
+            <Image src="/images/about-collaboration.webp" alt="Illustrative collaborative software studio scene" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {aboutStats.map((stat) => (
               <div
