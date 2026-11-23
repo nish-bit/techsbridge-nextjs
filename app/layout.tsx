@@ -28,7 +28,9 @@ export const metadata: Metadata = {
     "website maintenace services",
   ],
   authors: [{ name: company.founder }],
+  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "TechsBridge — Websites, Web Apps & AI Solutions" }],
     title: "TechsBridge — Websites, Web Apps & AI Solutions",
     description:
       "We design and develop high-performance websites, web applications, AI solutions and digital products that help businesses grow.",
@@ -38,6 +40,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
   },
   twitter: {
+    images: ["/opengraph-image"],
     card: "summary_large_image",
     title: "TechsBridge — Websites, Web Apps & AI Solutions",
     description:
