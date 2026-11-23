@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { services } from "@/lib/data";
 
-export function Services() {
+export function Services({ preview = false }: { preview?: boolean }) {
   return (
     <section id="services" className="bg-[var(--bg-soft)] py-[118px]">
       <Container>
@@ -13,7 +13,7 @@ export function Services() {
           description="From a landing page to a full product, every engagement is scoped around what actually moves your business forward."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => (
+          {(preview ? services.slice(0, 3) : services).map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />
           ))}
         </div>

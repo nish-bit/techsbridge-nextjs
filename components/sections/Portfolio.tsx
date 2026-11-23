@@ -7,7 +7,7 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 import { CaseStudyModal } from "@/components/ui/CaseStudyModal";
 import { projects, type Project } from "@/lib/data";
 
-export function Portfolio() {
+export function Portfolio({ preview = false }: { preview?: boolean }) {
   const [active, setActive] = useState<Project | null>(null);
 
   return (
@@ -19,7 +19,7 @@ export function Portfolio() {
           description="A snapshot of the kind of products we ship — each one designed, built, and deployed end to end."
         />
         <div className="grid gap-6 sm:grid-cols-2">
-          {projects.map((project, i) => (
+          {(preview ? projects.slice(0, 2) : projects).map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}

@@ -37,13 +37,13 @@ export function Hero() {
 
           <div className="mt-9 flex flex-wrap gap-4">
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[var(--blue-1)] to-[var(--blue-2)] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_34px_-12px_var(--glow)] transition-transform hover:-translate-y-0.5"
             >
               Start Your Project
             </a>
             <a
-              href="#work"
+              href="/work"
               className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-3)] px-7 py-3.5 text-sm font-semibold text-[var(--text-1)] backdrop-blur transition-transform hover:-translate-y-0.5 hover:border-[var(--blue-2)]"
             >
               View Our Work

@@ -60,7 +60,7 @@ export function Pricing() {
                     />
                   ) : (
                     <a
-                      href="#contact"
+                      href="/contact"
                       className={cn(
                         "mt-7 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5",
                         "border border-[var(--border)] bg-[var(--surface-3)] text-[var(--text-1)] hover:border-[var(--blue-2)]"

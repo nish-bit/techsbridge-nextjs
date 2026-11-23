@@ -105,7 +105,7 @@ export function CostCalculator() {
               project requirements.
             </p>
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[var(--blue-1)] to-[var(--blue-2)] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_-12px_var(--glow)] transition-transform hover:-translate-y-0.5"
             >
               Get Exact Quote

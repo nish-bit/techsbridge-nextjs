@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks, company } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -9,7 +10,7 @@ import { ThemeToggle, ThemeToggleSwitch } from "@/components/ui/ThemeToggle";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -18,25 +19,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const sections = navLinks
-      .map((l) => document.querySelector(l.href))
-      .filter(Boolean) as Element[];
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
@@ -48,7 +30,7 @@ export function Navbar() {
       >
         <div className="mx-auto flex h-full w-full max-w-[1180px] items-center justify-between px-6 md:px-7">
           <a
-            href="#home"
+            href="/"
             className="flex items-center gap-2.5 font-heading text-lg font-bold text-[var(--text-1)]"
           >
             <svg viewBox="0 0 220 130" className="h-7 w-7">
@@ -80,11 +62,11 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "relative text-sm font-medium text-[var(--text-2)] transition-colors hover:text-[var(--text-1)]",
-                  active === link.href && "text-[var(--text-1)]"
+                  pathname === link.href.split("#")[0] && "text-[var(--text-1)]"
                 )}
               >
                 {link.label}
-                {active === link.href && (
+                {pathname === link.href.split("#")[0] && (
                   <span className="absolute -bottom-1.5 left-0 h-[1.5px] w-full bg-[var(--blue-2)]" />
                 )}
               </a>
@@ -94,14 +76,14 @@ export function Navbar() {
           <div className="flex items-center gap-3.5">
             <ThemeToggle />
             <a
-              href="#contact"
+              href="/contact"
               className="hidden rounded-full bg-gradient-to-r from-[var(--blue-1)] to-[var(--blue-2)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_14px_34px_-12px_var(--glow)] transition-transform hover:-translate-y-0.5 md:inline-flex"
             >
               Start a Project
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
-              aria-label="Open menu"
+              aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-3)] text-[var(--text-1)] lg:hidden"
             >
               {open ? <X size={18} /> : <Menu size={18} />}
@@ -127,7 +109,7 @@ export function Navbar() {
           </a>
         ))}
         <a
-          href="#contact"
+          href="/contact"
           onClick={() => setOpen(false)}
           className="inline-flex w-fit rounded-full bg-gradient-to-r from-[var(--blue-1)] to-[var(--blue-2)] px-5 py-2.5 text-sm font-semibold text-white"
         >

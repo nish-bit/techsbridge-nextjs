@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageSquare, X, Send } from "lucide-react";
 import { company } from "@/lib/data";
 
@@ -28,6 +29,7 @@ const RESPONSES: Record<string, string> = {
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const [messages, setMessages] = useState<Message[]>([
     {
       from: "bot",
@@ -43,6 +45,7 @@ export function ChatWidget() {
       window.open(`https://wa.me/${company.phoneRaw}?text=${msg}`, "_blank");
     }
     setMessages((m) => [...m, { from: "bot", text: RESPONSES[option] }]);
+    if (option === "Pricing" && pathname !== "/pricing") window.location.assign("/pricing");
   }
 
   function handleSend() {

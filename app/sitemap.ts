@@ -1,24 +1,9 @@
 import type { MetadataRoute } from "next";
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://techsbridge.in/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: "https://techsbridge.in/services",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://techsbridge.in/contact",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-  ];
+  return ["/", "/about", "/services", "/work", "/pricing", "/faq", "/contact"].map((path, index) => ({
+    url: "https://techsbridge.in" + path,
+    lastModified: new Date(),
+    changeFrequency: index === 0 ? "weekly" as const : "monthly" as const,
+    priority: index === 0 ? 1 : 0.7,
+  }));
 }

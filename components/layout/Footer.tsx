@@ -6,18 +6,18 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "#about" },
-      { label: "Services", href: "#services" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Process", href: "#process" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Process", href: "/about#process" },
     ],
   },
   {
     title: "Work",
     links: [
-      { label: "Projects", href: "#work" },
-      { label: "Testimonials", href: "#testimonials" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Projects", href: "/work" },
+      { label: "Testimonials", href: "/#testimonials" },
+      { label: "FAQ", href: "/faq" },
     ],
   },
   {
@@ -25,7 +25,7 @@ const columns = [
     links: [
       { label: "Email", href: `mailto:${company.email}` },
       { label: "Call", href: `tel:+91${company.phoneRaw.slice(2)}` },
-      { label: "Get in touch", href: "#contact" },
+      { label: "Get in touch", href: "/contact" },
     ],
   },
 ];
@@ -37,7 +37,7 @@ export function Footer() {
       <Container>
         <div className="mb-10 flex flex-col justify-between gap-10 md:flex-row md:items-start">
           <div className="max-w-[280px]">
-            <a href="#home" className="flex items-center gap-2 font-heading text-lg font-bold">
+            <a href="/" className="flex items-center gap-2 font-heading text-lg font-bold">
               Techs<span className="grad-text">Bridge</span>
             </a>
             <p className="mt-4 text-sm text-[var(--text-2)]">{company.tagline}</p>

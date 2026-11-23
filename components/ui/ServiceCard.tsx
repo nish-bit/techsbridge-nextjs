@@ -47,7 +47,7 @@ export function ServiceCard({ service, index }: { service: Service; index: numbe
           ))}
         </ul>
         <a
-          href="#contact"
+          href="/contact"
           className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--blue-2)] transition-transform group-hover:translate-x-1"
         >
           Discuss Project →
