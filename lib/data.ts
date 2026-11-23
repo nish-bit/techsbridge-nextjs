@@ -310,6 +310,10 @@ export type PricingPlan = {
   features: string[];
   cta: string;
   popular?: boolean;
+  payment?: {
+    id: string;
+    amountInPaise: number;
+  };
 };
 
 export const pricingPlans: PricingPlan[] = [
@@ -327,6 +331,7 @@ export const pricingPlans: PricingPlan[] = [
       "7–10 day delivery",
     ],
     cta: "Start with Starter",
+    payment: { id: "starter", amountInPaise: 1000000 },
   },
   {
     name: "Growth",
@@ -342,6 +347,7 @@ export const pricingPlans: PricingPlan[] = [
       "3–6 week delivery",
     ],
     cta: "Start with Growth",
+    payment: { id: "growth", amountInPaise: 7500000 },
     popular: true,
   },
   {
