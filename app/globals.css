@@ -18,34 +18,36 @@
 }
 
 :root {
-  --bg: #050816;
-  --bg-soft: #070b1f;
-  --surface: #0a0e27;
-  --surface-2: #0c1338;
-  --surface-3: rgba(255, 255, 255, 0.045);
-  --border: rgba(255, 255, 255, 0.09);
-  --divider: rgba(110, 155, 255, 0.22);
-  --blue-1: #2b6cff;
-  --blue-2: #38bdf8;
-  --glow: rgba(56, 180, 255, 0.5);
-  --text-1: #f4f7fc;
-  --text-2: #8ea3ce;
-  --text-3: #5b6f9c;
+  --bg: #211f1b;
+  --bg-soft: #292620;
+  --surface: #302c26;
+  --surface-2: #39342d;
+  --surface-3: #302c26;
+  --border: #655c51;
+  --divider: #655c51;
+  --blue-1: #b97855;
+  --blue-2: #c58a67;
+  --glow: transparent;
+  --text-1: #f6f0e6;
+  --text-2: #d8cfc2;
+  --text-3: #b8aa9a;
   color-scheme: dark;
 }
 
 html[data-theme="light"] {
-  --bg: #f6f8fc;
-  --bg-soft: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #eef2fa;
-  --surface-3: rgba(10, 14, 39, 0.035);
-  --border: rgba(10, 14, 39, 0.09);
-  --divider: rgba(37, 99, 235, 0.2);
-  --glow: rgba(56, 140, 255, 0.28);
-  --text-1: #0a0e27;
-  --text-2: #4c5b7c;
-  --text-3: #8592ad;
+  --bg: #f5f1e9;
+  --bg-soft: #ebe5da;
+  --surface: #fffdf8;
+  --surface-2: #e9e2d7;
+  --surface-3: #fffdf8;
+  --border: #c9beb0;
+  --divider: #c9beb0;
+  --blue-1: #965238;
+  --blue-2: #965238;
+  --glow: transparent;
+  --text-1: #25221e;
+  --text-2: #514940;
+  --text-3: #695f54;
   color-scheme: light;
 }
 
@@ -75,17 +77,14 @@ body {
 }
 
 .grad-text {
-  background: linear-gradient(100deg, var(--blue-1), var(--blue-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  color: var(--blue-1);
 }
 
 .glass-card {
   background: var(--surface-3);
   border: 1px solid var(--border);
-  border-radius: 22px;
-  backdrop-filter: blur(14px);
+  border-radius: 1px;
 }
 
 @keyframes float1 {
@@ -120,3 +119,33 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Studio design system: restrained editorial layout and sharp geometry. */
+html { scroll-padding-top: 90px; }
+body { transition: background-color .15s ease, color .15s ease; }
+:focus-visible { outline: 2px solid var(--blue-1) !important; outline-offset: 3px; }
+::selection { background: var(--blue-1); color: #fff; }
+:where(button, a, input, select, textarea, [role="dialog"]) { border-radius: 1px !important; }
+:where(.rounded-full,.rounded-3xl,.rounded-2xl,.rounded-xl,.rounded-lg,.rounded-md,.rounded, [class*="rounded-["]) { border-radius: 1px !important; }
+:where([class*="bg-gradient"],[class*="bg-[radial-gradient"]) { background-image: none !important; background-color: var(--blue-1) !important; }
+:where([class*="bg-gradient"]):where([class*="from-[var(--surface"]) { background-color: var(--surface-2) !important; }
+:where([class*="shadow-"],[class*="blur-"],[class*="backdrop-blur"]) { box-shadow: none !important; filter: none !important; backdrop-filter: none !important; }
+:where([class*="hover:-translate"],[class*="hover:scale"],[class*="hover:rotate"]) { transform: none !important; }
+.glass-card { background: var(--surface); border: 1px solid var(--border); }
+.float-1,.float-2,.float-3,.animate-marquee { animation: none !important; }
+[class*="text-[#"],[class*="bg-[#"] { color: var(--text-1); }
+section { border-bottom: 1px solid var(--border); }
+section[id="home"] { background: var(--bg); }
+section[id="home"] > div[class*="pointer-events-none"] { display: none; }
+section[id="home"] > div[class*="grid"] { align-items: center; }
+section[id="home"] h1 { letter-spacing: -.055em; max-width: 14ch; }
+section[id="home"] p { line-height: 1.75; }
+section[id="home"] .glass-card { background: var(--surface); }
+header { background: var(--bg) !important; border-color: var(--border) !important; backdrop-filter: none !important; }
+nav a { letter-spacing: .01em; }
+input,textarea,select { border: 1px solid var(--border); background: var(--surface); }
+input:focus,textarea:focus,select:focus { outline: 2px solid var(--blue-1); outline-offset: 2px; }
+button,a { transition: background-color .15s ease,color .15s ease,border-color .15s ease !important; }
+@media (max-width: 767px) { section[id="home"] { padding-top: 132px; padding-bottom: 64px; } section { scroll-margin-top: 76px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -19,12 +19,12 @@ export function ProjectCard({
         <div
           className="relative flex h-40 items-end overflow-hidden p-5"
           style={{
-            background: `linear-gradient(135deg, ${project.accent}22, var(--surface))`,
+            background: "var(--surface-2)",
           }}
         >
           <div
             className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
-            style={{ background: project.accent }}
+            style={{ background: "var(--border)" }}
           />
           <span className="relative font-heading text-sm font-semibold text-[var(--text-1)]">
             {project.category}

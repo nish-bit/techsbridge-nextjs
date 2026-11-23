@@ -42,7 +42,7 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 h-[76px] border-b border-transparent bg-[var(--bg)]/55 backdrop-blur-xl transition-colors duration-400",
+          "fixed inset-x-0 top-0 z-50 h-[76px] border-b border-transparent bg-[var(--bg)] transition-colors duration-400",
           scrolled && "border-[var(--border)]"
         )}
       >
@@ -54,8 +54,8 @@ export function Navbar() {
             <svg viewBox="0 0 220 130" className="h-7 w-7">
               <defs>
                 <linearGradient id="navGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#2b6cff" />
-                  <stop offset="100%" stopColor="#38bdf8" />
+                  <stop offset="0%" stopColor="#965238" />
+                  <stop offset="100%" stopColor="#965238" />
                 </linearGradient>
               </defs>
               <path

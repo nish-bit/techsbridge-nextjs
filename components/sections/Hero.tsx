@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section id="home" className="relative overflow-hidden pb-24 pt-[172px]">
       <div className="pointer-events-none absolute -right-40 -top-64 h-[760px] w-[760px] rounded-full bg-[radial-gradient(circle,var(--glow),transparent_65%)] opacity-55 blur-[10px]" />
-      <div className="pointer-events-none absolute -bottom-56 -left-56 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(43,108,255,0.35),transparent_65%)]" />
+      <div className="pointer-events-none absolute -bottom-56 -left-56 h-[560px] w-[560px] rounded-full bg-[var(--surface)]" />
 
       <Container className="relative z-10 grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div
@@ -101,7 +101,7 @@ export function Hero() {
               <span className="text-[var(--blue-2)]">const</span> app = <span className="text-[var(--blue-2)]">new</span> App();
             </div>
             <div>
-              app.<span className="text-[var(--blue-2)]">deploy</span>(<span className="text-[#7ee787]">&apos;prod&apos;</span>);
+              app.<span className="text-[var(--blue-2)]">deploy</span>(<span className="text-[var(--text-2)]">&apos;prod&apos;</span>);
             </div>
             <div className="text-[var(--text-3)]">{"// AI agent online ✓"}</div>
             <div>
